@@ -26,7 +26,10 @@ const App = (props) => {
       });
   }, []);
 
-  const deleteMovie = (id) => {};
+  const deleteMovie = (id) => {
+    const newMovies = movies.filter((movie) => id !== movie.id);
+    setMovies(newMovies);
+  };
 
   const addToFavorites = (movie) => {};
 
@@ -46,11 +49,11 @@ const App = (props) => {
 
           <Switch>
             <Route path="/movies/edit/:id">
-              <EditMovieForm setMovies={setMovies}/>
+              <EditMovieForm setMovies={setMovies} />
             </Route>
 
             <Route path="/movies/:id">
-              <Movie />
+              <Movie setMovies={setMovies} deleteMovie={deleteMovie} />
             </Route>
 
             <Route path="/movies">
